@@ -34,6 +34,7 @@ public class TestParserSelection {
 	 */
 	public void perform_action() throws Exception {
 		ShapesParser[] parsers = { new Shapes_DOM(), new Shapes_SAX(),
+				new Shapes_JAXB(), new Shapes_DOM(), new Shapes_SAX(),
 				new Shapes_JAXB() };
 		for (File xmlTestFile : this.xmlTestFiles) {
 			List<ParserPerformance> fileResults=new ArrayList<ParserPerformance>();
