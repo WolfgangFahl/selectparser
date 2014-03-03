@@ -90,6 +90,9 @@ public class Shapes_DOM implements ShapesParser {
 			numberOfCircles = shapes.size();
 			System.out.println("circles=" + numberOfCircles);
 			/*for (Circle shape : shapes) {
+             String line="";
+             line=line+"(x="+x[i]+",y="+y[i]+",r="+r[i]+",color="+color[i]+")";
+             System.out.println(line);
 
 			} */
 		} catch (Exception e) {
