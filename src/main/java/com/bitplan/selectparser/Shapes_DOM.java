@@ -67,13 +67,6 @@ public class Shapes_DOM implements ShapesParser {
 
 		}
 
-		// print the result
-		for (int i = 0; i < numberOfCircles; i++) {
-			String line = "";
-			line = line + "(x=" + x[i] + ",y=" + y[i] + ",r=" + r[i] + ",color="
-					+ color[i] + ")";
-			System.out.println(line);
-		}
 		return result;
 	}
 
