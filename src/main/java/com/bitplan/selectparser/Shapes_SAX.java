@@ -23,10 +23,13 @@ public class Shapes_SAX extends DefaultHandler implements ShapesParser {
 	 * 
 	 */
 	public List<Circle> parse(File xmlFile) throws Exception {
+		performance.start();
+		performance.testFile=xmlFile;
 		currentResult = new ArrayList<Circle>();
 		SAXParser parser = new SAXParser(); // create a SAXParser object
 		parser.setContentHandler(this); // register with the ContentHandler
 		parser.parse(xmlFile.getAbsolutePath());
+		performance.stop();
 		return currentResult;
 	}
 
@@ -88,6 +91,24 @@ public class Shapes_SAX extends DefaultHandler implements ShapesParser {
 		} catch (Exception e) {
 			e.printStackTrace(System.err);
 		} // catch exeptions
+	}
+
+	public Shapes_SAX clone() {
+		return new Shapes_SAX();
+	}
+	
+	ParserPerformanceImpl performance=new ParserPerformanceImpl();
+	
+	public long getSize() {
+		return performance.getSize();
+	}
+
+	public File getTestFile() {
+		return performance.getTestFile();
+	}
+
+	public long getMilliSeconds() {
+		return performance.getMilliSeconds();
 	}
 
 }

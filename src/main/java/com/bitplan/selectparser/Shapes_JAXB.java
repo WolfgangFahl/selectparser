@@ -11,13 +11,17 @@ import javax.xml.bind.Marshaller;
 import javax.xml.bind.Unmarshaller;
 
 @SuppressWarnings("restriction")
-public class Shapes_JAXB implements ShapesParser {
+public class Shapes_JAXB extends ParserPerformanceImpl implements ShapesParser {
 
 	public List<Circle> parse(File xmlFile) throws Exception {
+		this.testFile=xmlFile;
+		start();
 		JAXBContext context = JAXBContext.newInstance(Shapes.class);
 		Unmarshaller u = context.createUnmarshaller();
 		Shapes shapes = (Shapes) u.unmarshal(xmlFile);
-		return shapes.getCircles();
+		List<Circle> result = shapes.getCircles();
+		stop();
+		return result;
 	}
 
 	public void toXML(Shapes shapes, File xmlFile) throws Exception {
@@ -51,6 +55,10 @@ public class Shapes_JAXB implements ShapesParser {
 			shapes.setCircles(circles);
 			shapesJaxb.toXML(shapes, testfile);
 		}
+	}
+	
+	public Shapes_JAXB clone() {
+		return new Shapes_JAXB();
 	}
 
 }
