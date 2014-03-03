@@ -1,5 +1,12 @@
 package com.bitplan.selectparser;
 
+import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlAccessType;
+
+@SuppressWarnings("restriction")
+@XmlRootElement(name="Circle")
+@XmlAccessorType(XmlAccessType.FIELD)
 public class CircleImpl implements Circle  {
 	int x;
 	int y;
