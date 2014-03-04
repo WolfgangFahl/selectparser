@@ -32,20 +32,87 @@ Themen und Fragestellungen:
 - Wie lässt sich die Konsistenz zwischen Designentscheidungen und Architektur aufrechterhalten
 ```
 
+# Workshop 2014-03-03
+## Teilnehmer
+* Martin Rösch
+* Wolfgang Fahl
+
+## Ort/Zeit
+BITPlan GmbH, Willich
+2014-03-03 10:00 - 16:30 Uhr
 
 ## Aufgabe/Ziele/Vorgehen klären 
-### Aufgabe ###
+### Aufgabe
 Objektivieren einer Architekturentscheidung anhand messbarer Kriterien für Architekturanforderungen 
 (Messbarkeit heisst hier, dass die Kriterien als Testfälle ausführbar gemacht werden)
 
-### Ziele ###
+### Ziele
 * Spezifizieren der Anforderungen
 * Spezifizieren der Kriterien für jede Anforderung
 * Kriterien als ausführbare Tests bereitstellen
 * Prüfen mehrerer Implementierungen, deren fachliche Richtigkeit angenommen wird mit Hilfe der Tests
 * Auswahl einer Alternative anhand der Testergebnisse
 * Praktisches Java Beispiel für die obige Ziele mit Auslieferung in drei Teilen:
-** JAR für Interfaces 
-** JAR(s) für Implementierungen
-** JAR für Tests
+1. JAR für Interfaces 
+2. JAR(s) für Implementierungen
+3. JAR für Tests
 plus Infrastruktur
+
+### Vorgehen 
+#### Beispiel: JAXP
+Als Beispiel soll die Entscheidung/Auswahl einer Java XML Parser Implementierung dienen.
+
+Prinzipiell haben JSRs bereits die dreiteilige Auslieferungsstruktur mit Trennung in Interfaces, Implementierung und Test.
+Sowird z.B. die JSR 206 Implementierung Xerces als
+* xml-apis.jar für die Interfaces
+* xercesimpl.jar für die Implementierung
+* und als TCK (http://en.wikipedia.org/wiki/Technology_Compatibility_Kit) für den Test 
+bereitgestellt.
+Unglücklicherweise sind die TCK Quellen dabei nicht öffentlich.
+
+Details zum JSR 206:
+* https://www.jcp.org/en/jsr/detail?id=206
+* https://jaxp.java.net/1.4/JAXP-FAQ.html
+
+Es gibt mehrere Implementierungen
+* Reference Implementierung in Java SE 1.5 enthalten siehe oben JSR 206 Link
+* Xerces.jar
+* Saxon.jar
+
+# Analyse
+* http://en.wikipedia.org/wiki/Technology_Compatibility_Kit
+* https://blogs.apache.org/foundation/entry/the_asf_s_position_on
+DOM vs. SAX:
+* http://www.cs.nmsu.edu/~epontell/courses/XML/material/xmlparsers.html#shapes_DOM
+
+es zeigt sich, dass der Vergleich von DOM und SAX wie im obigen Beispiel geeigneter ist, als der direkte Vergleich von Xerces und Saxon.
+
+# Umsetzung des obigen Vorgehens
+Arbeitsname: selectparser
+
+## Infrastruktur
+Veröffentlichung der Ergebnisse hier auf Github:
+<pre>
+git clone https://github.com/WolfgangFahl/selectparser
+</pre>
+
+## Anforderung 
+Zu einer Liste von shapes die aus circles bestehen sollen Berechnungen durchgeführt  werden (z.b. Summe alle Flächen). Dazu müssen
+die Shapes aus einer XML-Datei eingelesen werden. Dies soll möglichst schnell geschehen. Die beste Implementierung soll gewählt werden.
+ 
+Beispiel für eine Input-Datei:
+```
+<shapes> 
+          <circle color="BLUE"> 
+                <x>20</x>
+                <y>20</y>
+                <radius>20</radius> 
+          </circle>
+          <circle color="RED" >
+                <x>40</x>
+                <y>40</y>
+                <radius>20</radius> 
+          </circle>
+</shapes> 
+```
+
