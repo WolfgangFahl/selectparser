@@ -96,7 +96,9 @@ Veröffentlichung der Ergebnisse hier auf Github:
 git clone https://github.com/WolfgangFahl/selectparser
 </pre>
 
-## Anforderung 
+## Spezifizieren der Anforderungen
+Es wird eine Beispielanforderung spezifiziert:
+### Anforderung
 Zu einer Liste von shapes die aus circles bestehen sollen Berechnungen durchgeführt  werden (z.b. Summe alle Flächen). Dazu müssen
 die Shapes aus einer XML-Datei eingelesen werden. Dies soll möglichst schnell geschehen. Die beste Implementierung soll gewählt werden.
  
@@ -115,4 +117,19 @@ Beispiel für eine Input-Datei:
           </circle>
 </shapes> 
 ```
+## Spezifizieren der Kriterien für jede Anforderung
+Es wird ein Beispielkriterium spezifiziert:
+### Kriterium 
+* Situation: Es liegt Shape-Dateien mit 2,1000,10000 und 100000 Shapes vor.
+* Aktion: Die Dateien werd mit den XML-Parserimplementierungen SAX, DOM und JAXB als Objektstruktur eingelesen. 
+* Erwartetes Ergebnis: Die Verarbeitung dauert unterschiedliche Lange. Die Implementierung werden nach Schnelligkeit sortiert angezeigt.
+
+## Kriterien als ausführbare Tests bereitstellen
+Das hier eingestellte Java Projekt ist als Eclipse-Projekt ausführbar.
+Das oben aufgestellte Kriterium ist als JUnit Test in TestParserSelection.java umgesetzt.
+Dieser Test kann in Eclipse oder mit
+```
+mvn test
+```
+ausgeführt werden.
 
